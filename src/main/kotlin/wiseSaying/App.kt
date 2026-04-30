@@ -4,6 +4,7 @@ class App {
 
     fun run() {
         var lastId = 0 // 우선 val로 하고, 수정이 필요한 변수이면 var로 바꿔준다.
+        val wiseSayings = mutableListOf<WiseSaying>()
 
         println("== 명언 앱 ==")
 
@@ -24,7 +25,18 @@ class App {
                     val author = readln()
 
                     val id = ++lastId
+
+                    WiseSaying(id, content, author)
+                        .also { wiseSayings.add(it) }
+
                     println("${id}번 명언이 등록되었습니다.")
+                }
+                "목록" -> {
+                    println("번호 / 작가 / 명언")
+                    println("-".repeat(30))
+                    wiseSayings.reversed().forEach { // 내림차순
+                        println("${it.id} / ${it.author} / ${it.content}")
+                    }
                 }
             }
 
