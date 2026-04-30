@@ -1,0 +1,4 @@
+package wiseSaying
+
+class WiseSayingController {
+}
