@@ -1,7 +1,14 @@
 package wiseSaying
 
-data class WiseSaying( // java의 record 역할
-    val id: Int,
-    val content: String,
-    val author: String,
-)
+data class WiseSaying(
+    var id: Int = 0,
+    var content: String,
+    var author: String
+) {
+    fun modify(content: String, author: String) {
+        this.content = content
+        this.author = author
+    }
+
+    fun isNew() = id == 0
+}
