@@ -8,7 +8,7 @@ class App {
 
         println("== 명언 앱 ==")
 
-        while(true) {
+        while (true) {
             print("명령) ")
 
             val input = readln()
@@ -19,6 +19,7 @@ class App {
                     println("프로그램을 종료합니다.")
                     break
                 }
+
                 "등록" -> {
                     print("명언: ")
                     val content = readln()
@@ -33,6 +34,7 @@ class App {
 
                     println("${id}번 명언이 등록되었습니다.")
                 }
+
                 "목록" -> {
                     println("번호 / 작가 / 명언")
                     println("-".repeat(30))
@@ -40,18 +42,27 @@ class App {
                         println("${it.id} / ${it.author} / ${it.content}")
                     }
                 }
+
                 "삭제" -> {
                     val id = rq.getParamAsInt("id", 0)
 
-                    wiseSayings.removeIf {
-                        it.id == id
+                    if (id == 0) {
+                        println("id를 입력해주세요.")
+                        continue
                     }
 
-                    println("${id}번 명언이 삭제되었습니다.")
+                    wiseSayings
+                        .firstOrNull {
+                            it.id == id
+                        }
+                        ?.let {
+                            wiseSayings.remove(it)
+                        }
 
+                        println("${id}번 명언이 삭제되었습니다.")
+
+                    }
                 }
             }
-
         }
     }
-}
