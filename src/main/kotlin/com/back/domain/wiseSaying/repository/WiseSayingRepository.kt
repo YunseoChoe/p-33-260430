@@ -12,7 +12,7 @@ class WiseSayingRepository {
         return wiseSaying
             .takeIf { it.isNew() }
             ?.apply {
-                id = ++lastId
+                this.id = ++lastId
             }
             ?.also {
                 wiseSayings.add(it)
@@ -25,4 +25,8 @@ class WiseSayingRepository {
 
     fun delete(wiseSaying: WiseSaying) = wiseSayings.remove(wiseSaying)
 
+    fun clear() {
+        lastId = 0
+        wiseSayings.clear()
+    }
 }
